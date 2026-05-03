@@ -2,15 +2,54 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>For You 💙</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>For You 💙 | Mini Movie</title>
+
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #cfe8ff, #4da3ff);
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: #0b1b3a;
       overflow: hidden;
-      color: #0f172a;
+      color: white;
+    }
+
+    /* ===== INTRO SCREEN ===== */
+    #intro {
+      position: fixed;
+      width: 100%;
+      height: 100vh;
+      background: radial-gradient(circle at center, #1d4ed8, #0b1b3a);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 10;
+      animation: fadeOut 2s ease 3s forwards;
+    }
+
+    #intro h1 {
+      font-size: 28px;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #60a5fa; }
+      to { text-shadow: 0 0 25px #93c5fd; }
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; visibility: hidden; }
+    }
+
+    /* ===== MAIN SITE ===== */
+    #site {
+      opacity: 0;
+      animation: showSite 2s ease 3s forwards;
+    }
+
+    @keyframes showSite {
+      to { opacity: 1; }
     }
 
     .center {
@@ -21,16 +60,17 @@
     }
 
     .card {
-      background: white;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(10px);
       padding: 30px;
       border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      box-shadow: 0 0 30px rgba(0,0,0,0.4);
       text-align: center;
       width: 90%;
       max-width: 420px;
     }
 
-    h1 { color: #1d4ed8; }
+    h1 { color: #93c5fd; }
 
     button {
       padding: 10px 15px;
@@ -42,13 +82,13 @@
       cursor: pointer;
     }
 
-    button:hover { background: #1e40af; }
+    button:hover { background: #2563eb; }
 
     .hidden { display: none; }
 
     .heart {
       position: absolute;
-      font-size: 20px;
+      font-size: 18px;
       animation: floatUp 6s linear infinite;
     }
 
@@ -57,74 +97,76 @@
       100% { transform: translateY(-10vh); opacity: 0; }
     }
 
+    iframe {
+      border-radius: 12px;
+      margin-top: 10px;
+    }
+
     .nav {
       display: flex;
       justify-content: center;
       gap: 10px;
       margin-top: 10px;
     }
-
-    img {
-      width: 100%;
-      border-radius: 10px;
-      margin-top: 10px;
-    }
   </style>
 </head>
+
 <body>
 
-<!-- PASSWORD SCREEN -->
-<div class="center" id="lockScreen">
-  <div class="card">
-    <h1>Enter Password 💙</h1>
-    <p>Hint: our special day</p>
-    <input type="password" id="pass" placeholder="Enter password" />
-    <br />
-    <button onclick="checkPass()">Enter</button>
-  </div>
+<!-- INTRO (MOVIE OPENING) -->
+<div id="intro">
+  <h1>💙 A small movie... just for you</h1>
+  <p>loading memories...</p>
 </div>
 
 <!-- MAIN WEBSITE -->
-<div class="hidden" id="site">
+<div id="site">
 
   <div class="center" id="home">
     <div class="card">
-      <h1>Hi, <span id="name">Love</span> 💙</h1>
-      <p>This is for you. Always.</p>
+      <h1>Hi, Love 💙</h1>
+      <p>This is your mini movie.</p>
 
-      <button onclick="goPage('letter')">Open Letter 💌</button>
-      <button onclick="goPage('gallery')">Photo Gallery 📸</button>
-      <button onclick="playMusic()">Play Music 🎶</button>
+      <!-- Spotify -->
+      <iframe style="border-radius:12px"
+        src="https://open.spotify.com/embed/track/2btKtacOXuMtC9WjcNRvAA?utm_source=generator"
+        width="100%" height="152"
+        frameborder="0"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy">
+      </iframe>
+
+      <button onclick="go('letter')">💌 Scene 1</button>
+      <button onclick="go('gallery')">📸 Scene 2</button>
     </div>
   </div>
 
   <div class="center hidden" id="letter">
     <div class="card">
-      <h1>Dear You 💙</h1>
+      <h1>Scene 1: Dear You 💙</h1>
       <p>
-        I appreciate you more than words can say. Thank you for staying, understanding, and loving me.
+        I may not always say it perfectly,
+        but I am grateful for you in every way.
       </p>
-      <button onclick="goPage('home')">Back</button>
+      <button onclick="go('home')">Back</button>
     </div>
   </div>
 
   <div class="center hidden" id="gallery">
     <div class="card">
-      <h1>Our Moments 📸</h1>
-      <img id="photo" src="https://picsum.photos/400/250?random=1" />
+      <h1>Scene 2: Memories 📸</h1>
+      <img id="photo" src="https://picsum.photos/400/250?random=1" width="100%"/>
+
       <div class="nav">
-        <button onclick="prevPhoto()">Prev</button>
-        <button onclick="nextPhoto()">Next</button>
+        <button onclick="prev()">Prev</button>
+        <button onclick="next()">Next</button>
       </div>
-      <button onclick="goPage('home')">Back</button>
+
+      <button onclick="go('home')">Back</button>
     </div>
   </div>
 
 </div>
-
-<audio id="music" loop>
-  <source src="your-song.mp3" type="audio/mpeg">
-</audio>
 
 <script>
 let photos = [
@@ -132,46 +174,34 @@ let photos = [
   "https://picsum.photos/400/250?random=2",
   "https://picsum.photos/400/250?random=3"
 ];
-let index = 0;
 
-function checkPass() {
-  let pass = document.getElementById('pass').value;
-  if (pass === "0504") {
-    document.getElementById('lockScreen').style.display = 'none';
-    document.getElementById('site').style.display = 'block';
-  } else {
-    alert("Wrong password 💙");
-  }
-}
+let i = 0;
 
-function goPage(page) {
+function go(page) {
   document.querySelectorAll('#site > div').forEach(d => d.classList.add('hidden'));
   document.getElementById(page).classList.remove('hidden');
 }
 
-function playMusic() {
-  document.getElementById('music').play();
+function next() {
+  i = (i + 1) % photos.length;
+  document.getElementById('photo').src = photos[i];
 }
 
-function nextPhoto() {
-  index = (index + 1) % photos.length;
-  document.getElementById('photo').src = photos[index];
+function prev() {
+  i = (i - 1 + photos.length) % photos.length;
+  document.getElementById('photo').src = photos[i];
 }
 
-function prevPhoto() {
-  index = (index - 1 + photos.length) % photos.length;
-  document.getElementById('photo').src = photos[index];
+// floating hearts
+function hearts() {
+  const h = document.createElement('div');
+  h.classList.add('heart');
+  h.innerHTML = '💙';
+  h.style.left = Math.random() * 100 + 'vw';
+  document.body.appendChild(h);
+  setTimeout(() => h.remove(), 6000);
 }
-
-function createHearts() {
-  const heart = document.createElement('div');
-  heart.classList.add('heart');
-  heart.innerHTML = '💙';
-  heart.style.left = Math.random() * 100 + 'vw';
-  document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 6000);
-}
-setInterval(createHearts, 500);
+setInterval(hearts, 500);
 </script>
 
 </body>
