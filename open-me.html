@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For You 💙</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #cfe8ff, #4da3ff);
+      overflow: hidden;
+      color: #0f172a;
+    }
+
+    .center {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      text-align: center;
+      width: 90%;
+      max-width: 420px;
+    }
+
+    h1 { color: #1d4ed8; }
+
+    button {
+      padding: 10px 15px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 10px;
+      background: #1d4ed8;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover { background: #1e40af; }
+
+    .hidden { display: none; }
+
+    .heart {
+      position: absolute;
+      font-size: 20px;
+      animation: floatUp 6s linear infinite;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(100vh); opacity: 1; }
+      100% { transform: translateY(-10vh); opacity: 0; }
+    }
+
+    .nav {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    img {
+      width: 100%;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- PASSWORD SCREEN -->
+<div class="center" id="lockScreen">
+  <div class="card">
+    <h1>Enter Password 💙</h1>
+    <p>Hint: our special day</p>
+    <input type="password" id="pass" placeholder="Enter password" />
+    <br />
+    <button onclick="checkPass()">Enter</button>
+  </div>
+</div>
+
+<!-- MAIN WEBSITE -->
+<div class="hidden" id="site">
+
+  <div class="center" id="home">
+    <div class="card">
+      <h1>Hi, <span id="name">Love</span> 💙</h1>
+      <p>This is for you. Always.</p>
+
+      <button onclick="goPage('letter')">Open Letter 💌</button>
+      <button onclick="goPage('gallery')">Photo Gallery 📸</button>
+      <button onclick="playMusic()">Play Music 🎶</button>
+    </div>
+  </div>
+
+  <div class="center hidden" id="letter">
+    <div class="card">
+      <h1>Dear You 💙</h1>
+      <p>
+        I appreciate you more than words can say. Thank you for staying, understanding, and loving me.
+      </p>
+      <button onclick="goPage('home')">Back</button>
+    </div>
+  </div>
+
+  <div class="center hidden" id="gallery">
+    <div class="card">
+      <h1>Our Moments 📸</h1>
+      <img id="photo" src="https://picsum.photos/400/250?random=1" />
+      <div class="nav">
+        <button onclick="prevPhoto()">Prev</button>
+        <button onclick="nextPhoto()">Next</button>
+      </div>
+      <button onclick="goPage('home')">Back</button>
+    </div>
+  </div>
+
+</div>
+
+<audio id="music" loop>
+  <source src="your-song.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+let photos = [
+  "https://picsum.photos/400/250?random=1",
+  "https://picsum.photos/400/250?random=2",
+  "https://picsum.photos/400/250?random=3"
+];
+let index = 0;
+
+function checkPass() {
+  let pass = document.getElementById('pass').value;
+  if (pass === "0504") {
+    document.getElementById('lockScreen').style.display = 'none';
+    document.getElementById('site').style.display = 'block';
+  } else {
+    alert("Wrong password 💙");
+  }
+}
+
+function goPage(page) {
+  document.querySelectorAll('#site > div').forEach(d => d.classList.add('hidden'));
+  document.getElementById(page).classList.remove('hidden');
+}
+
+function playMusic() {
+  document.getElementById('music').play();
+}
+
+function nextPhoto() {
+  index = (index + 1) % photos.length;
+  document.getElementById('photo').src = photos[index];
+}
+
+function prevPhoto() {
+  index = (index - 1 + photos.length) % photos.length;
+  document.getElementById('photo').src = photos[index];
+}
+
+function createHearts() {
+  const heart = document.createElement('div');
+  heart.classList.add('heart');
+  heart.innerHTML = '💙';
+  heart.style.left = Math.random() * 100 + 'vw';
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 6000);
+}
+setInterval(createHearts, 500);
+</script>
+
+</body>
+</html>
