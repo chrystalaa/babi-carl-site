@@ -10,7 +10,14 @@
 <title>For You 💙</title>
 
 <style>
-
+.letter-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  width: 100%;
+}
 .stickers {
   position: fixed;
   inset: 0;
@@ -239,6 +246,7 @@ button:hover {
 
 #letter {
   justify-content: center; /* or flex-start depending on vibe */
+  align-items: center;
 }
 
 #final {
@@ -471,34 +479,38 @@ But more than that, I am even more proud of how far you have come.
 <!-- ✉️ LETTER SCREEN -->
 <div class="screen" id="letter">
 
-  <div class="envelope" onclick="openEnvelope(this)">
-    
-    <div class="env-back"></div>
+  <div class="letter-wrap">
 
-    <div class="env-letter">
-      Sometimes I envy how wonderful you are<br>
-      You know, there are things I see in you nga wala sa akon<br>
-      Kag ikaw lang gid ang naghatag sakon sang amo ni nga pagpalangga. <br>
-      <br>
-      But sometimes, I'm afraid that this wonderful person might be gone someday <br>
-      Maybe that's why I'm always anxious to have your attention almost all the time <br>
-      That I'm afraid that I can't be as wonderful and enough as you are. <br>
-      <br>
-      I’m sorry for the misunderstandings and the lapses I had <br>
-      I never meant to cause you confusion or hurt. <br>
-      <br>
-      I always think about you, my love <br>
-      And no matter what happens, I’m choosing to grow with you and understand you better <br>
-      And I hope you'll truly be my first and last. <br>
+    <div class="envelope" onclick="openEnvelope(this)">
+      
+      <div class="env-back"></div>
+
+      <div class="env-letter">
+        Sometimes I envy how wonderful you are<br>
+        You know, there are things I see in you nga wala sa akon<br>
+        Kag ikaw lang gid ang naghatag sakon sang amo ni nga pagpalangga. <br>
+        <br>
+        But sometimes, I'm afraid that this wonderful person might be gone someday <br>
+        Maybe that's why I'm always anxious to have your attention almost all the time <br>
+        That I'm afraid that I can't be as wonderful and enough as you are. <br>
+        <br>
+        I’m sorry for the misunderstandings and the lapses I had <br>
+        I never meant to cause you confusion or hurt. <br>
+        <br>
+        I always think about you, my love <br>
+        And no matter what happens, I’m choosing to grow with you and understand you better <br>
+        And I hope you'll truly be my first and last. <br>
+      </div>
+
+      <div class="env-flap"></div>
+
     </div>
 
-    <div class="env-flap"></div>
+    <button class="back" onclick="back()">Back</button>
 
   </div>
 
-  <button class="back" onclick="back()">Back</button>
 </div>
-
 <!-- 💙 FINAL SURPRISE -->
 <div class="screen" id="final">
 
