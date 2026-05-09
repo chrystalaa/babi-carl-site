@@ -287,8 +287,9 @@ iframe {
 
 /* 💌 ENVELOPE BASE */
 .envelope {
-  width: 340px;
-  height: 240px;
+  width: min(1000vw, 420px);   /* smaller max size */
+  height: calc(min(80vw, 400px) * 0.7);
+
   position: relative;
   cursor: pointer;
   perspective: 1200px;
@@ -311,28 +312,35 @@ iframe {
   inset: 20px;
   background: white;
 
-  /* floral pattern feel */
   background-image: url("https://www.transparenttextures.com/patterns/flowers.png");
   background-size: cover;
 
   border-radius: 4px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  text-align: center;
+  
   color: #111827;
-  font-size: 14px;
+  letter-spacing: 0.5px;
+  line-height: 1.8;
+  font-size: 13px;
+  font-family: 'Cormorant Garamond', serif;
+
+  padding: 20px;
+
+  /* 🔥 SCROLL FIX */
+  overflow-y: auto;
+  max-height: 100%;
+
+  /* remove centering */
+  display: block;
 
   transform: translateY(40px);
   opacity: 0;
   transition: 0.7s ease;
 
   z-index: 2;
-  padding: 10px;
-}
 
+  scroll-behavior: smooth;
+  line-height: 1.6;
+}
 /* 🔺 FRONT FLAP (triangle fold like your reference image) */
 .env-flap {
   position: absolute;
@@ -353,7 +361,7 @@ iframe {
 }
 
 .envelope.open .env-letter {
-  transform: translateY(0);
+  transform: translateY(-10px) scale(1.02);
   opacity: 1;
 }
 #letter {
@@ -413,7 +421,30 @@ iframe {
 <div class="screen" id="story">
   <h2 class="section">Hi Carl 💙</h2>
   <p class="section">
-    This is a small cinematic space made just for you.
+    Hilu Babi Carl!<br><br>
+My babi, my love, my weird future hubby, my handsome boyfriend, my all,<br>
+the one and only person who showed me that it is not impossible to love again.<br><br>
+
+At first, I really didn't know, babi, but I trusted my guts.<br>
+I felt that you were someone special, and a part of me just instantly clicked with you.<br><br>
+
+You are the first person I truly envisioned being with until the end.<br>
+At first, I thought it was only me feeling this way, and I thought I would just be another girl for you.<br>
+Hadlok pa ko sang una nga basi we are not on the same page, pero I still risked it all.<br><br>
+
+I did not expect nga you would like me back kag maseryoso ka gid man sa akon.<br>
+And there, it was locked — I became all yours na, my love.<br><br>
+
+And there it is… look at us now. Time flies so fast noh.<br>
+We used to get excited just to go to school and see each other.<br>
+Now we are on different campuses, but we still managed to go through it all.<br><br>
+
+And now, you're entering college na man just like me.<br>
+Different or same campus, I'm always yours and I'll always be here for you, babi.<br><br>
+
+I am so proud of how far we've come, babi.<br>
+But more than that, I am even more proud of how far you have come.
+
   </p>
   <button class="back" onclick="back()">Back</button>
 </div>
@@ -426,8 +457,16 @@ iframe {
     <div class="env-back"></div>
 
     <div class="env-letter">
-      💙 I may not always say it perfectly,  
-      but you mean a lot to me.
+      Sometimes I envy how wonderful you are<br>
+      You know, there are things I see in you nga wala sa akon<br>
+      Kag ikaw lang gid ang naghatag sakon sang amo ni nga pagpalangga. <br>
+      <br>
+      But sometimes, I'm afraid that this wonderful person might be gone someday <br>
+      Maybe that's why I'm always anxious to have your attention almost all the time <br>
+      That I'm afraid that I can't be as wonderful and enough as you are. <br>
+      <br>
+      I always think about you, my love <br>
+      And I hope you'll truly be my first and last. <br>
     </div>
 
     <div class="env-flap"></div>
@@ -452,10 +491,10 @@ iframe {
 
     <!-- 📸 IMAGES -->
     <div class="gallery">
-      <img src="images/1.jpg">
-      <img src="images/2.jpg">
-      <img src="images/3.jpg">
-      <img src="images/4.jpg">
+      <img src="1.jpg">
+      <img src="2.jpg">
+      <img src="3.jpg">
+      <img src="4.jpg">
     </div>
 
     <!-- 💙 MESSAGE -->
