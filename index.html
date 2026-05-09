@@ -211,7 +211,6 @@ button:hover {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-top: 60px
   align-items: center;
 
   text-align: center;
@@ -231,6 +230,24 @@ button:hover {
   opacity: 1;
   transform: scale(1);
   pointer-events: auto;
+}
+
+#story {
+  justify-content: flex-start;
+  padding-top: 60px;
+}
+
+#letter {
+  justify-content: center; /* or flex-start depending on vibe */
+}
+
+#final {
+  justify-content: center;
+}
+
+.screen.long {
+  justify-content: flex-start;
+  padding-top: 60px;
 }
 
 @keyframes fadeIn {
@@ -387,6 +404,7 @@ iframe {
 </head>
 
 <body>
+<div class="screen long" id="story">
 
 <div class="stickers">
   <span class="sticker">💙</span>
